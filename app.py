@@ -1,18 +1,25 @@
 import streamlit as st
 import pandas as pd
 import pickle
-#import sklearn
-#print(sklearn.__version__)
-# Load the trained model
-model_path = 'restaurant_rating_prediction_model.pkl'  # Update this with the actual path to your model
+import os  # Import the os module for path operations
 
-try:
-    with open(model_path, 'rb') as file:
-        model = pickle.load(file)
-except FileNotFoundError:
-    st.error("Model file not found. Please ensure the correct path to the model file.")
-except Exception as e:
-    st.error(f"Error loading the model: {e}")
+# Check the current working directory for debugging
+print("Current Working Directory:", os.getcwd())
+
+# Define the model path
+model_path = 'absolute/path/to/restaurant_rating_prediction_model.pkl'  # Update with absolute file path
+print("Model Path:", model_path)  # Print the model path for debugging
+
+# Check if the model file exists and load the model
+if os.path.exists(model_path):
+    try:
+        with open(model_path, 'rb') as file:
+            model = pickle.load(file)
+        st.success("Model loaded successfully!")  # Print success message if model loads
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
+else:
+    st.error("Model file not found! Please check the file path.")
 
 # Define a function to predict restaurant rating
 def predict_rating(restaurant_name):
