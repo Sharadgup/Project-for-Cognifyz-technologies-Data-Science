@@ -7,7 +7,7 @@ import os  # Import the os module for path operations
 print("Current Working Directory:", os.getcwd())
 
 # Define the model path
-model_path = 'absolute/path/to/restaurant_rating_prediction_model.pkl'  # Update with absolute file path
+model_path = 'restaurant_rating_prediction_model.pkl'  # Update with absolute file path
 print("Model Path:", model_path)  # Print the model path for debugging
 
 # Check if the model file exists and load the model
