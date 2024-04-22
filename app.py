@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 import sklearn
-
+print(sklearn.__version__)
 # Load the trained model
 model_path = 'restaurant_rating_prediction_model.pkl'  # Update this with the actual path to your model
 
