@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import os  # Import the os module for path 
+import folium
+import os
 
 # Check the current working directory for debugging
 print("Current Working Directory:", os.getcwd())
@@ -53,3 +54,21 @@ if st.button('Predict Rating'):
             st.success(f'Predicted rating for {restaurant_name}: {predicted_rating:.2f}')
     else:
         st.warning('Please enter a restaurant name.')
+
+# Load your dataset that contains latitude and longitude columns
+df = pd.read_csv('your_dataset.csv')  # Update with your actual dataset file path
+
+# Create a map centered on the first location in your dataset (adjust as needed)
+first_location = df.iloc[0]  # Assuming the first row contains latitude and longitude
+map_center = [first_location['Latitude'], first_location['Longitude']]
+
+# Create the map centered on the first location
+my_map = folium.Map(location=map_center, zoom_start=10)
+
+# Add markers for each location in your dataset
+for index, row in df.iterrows():
+    folium.Marker([row['Latitude'], row['Longitude']], popup=row['Restaurant Name']).add_to(my_map)
+
+# Display the map
+st.markdown(my_map._repr_html_(), unsafe_allow_html=True)
+
