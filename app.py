@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from google.colab import drive
+#from google.colab import drive
 
 # Mount Google Drive to access the model file
-drive.mount('/content/drive')
+#drive.mount('/content/drive')
 
 # Load the trained model
 model_path = '/content/drive/MyDrive/Colab Notebooks/restaurant_rating_prediction_model.pkl'  # Update this with the actual path to your model
