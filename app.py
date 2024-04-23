@@ -1,18 +1,27 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os  # Import the os module for file path operations
 
-st.write(f"Model path: {model_path.abspath(restaurant_rating_prediction_model.pkl)}")
-st.write(f"File exists: {model_path.exists(restaurant_rating_prediction_model.pkl)}")
+# Define the GitHub file path for your model
+github_repo_url = 'https://github.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science.git'
+model_path = os.path.join(github_repo_url, 'restaurant_rating_prediction_model.pkl')
 
-try:
-    with open(model_path, 'rb') as file:
-        model = pickle.load(file)
-    st.success("Model loaded successfully!")  # Print success message if model loads
-except Exception as e:
-    st.error(f"Error loading the model: {e}")
+# Display the model path and check if the file exists
+st.write(f"Model path: {model_path}")
+file_exists = os.path.exists(model_path)
+st.write(f"File exists: {file_exists}")
 
-# Rest of your code...
+if file_exists:
+    try:
+        with open(model_path, 'rb') as file:
+            model = pickle.load(file)
+        st.success("Model loaded successfully!")  # Print success message if model loads
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
+else:
+    st.error("Model file not found! Please check the file path.")
+
 # Define a function to predict restaurant rating
 def predict_rating(restaurant_name):
     # Check if the model is loaded successfully
