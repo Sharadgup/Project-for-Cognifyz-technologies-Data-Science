@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import requests  # Import requests library for downloading the model file
+import requests
 
 # Define the URL of the model file on GitHub
-model_url = 'https://github.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science/blob/main/restaurant_rating_prediction_model.pkl'
+model_url = 'https://raw.githubusercontent.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science/main/restaurant_rating_prediction_model.pkl'
 
 # Display the model URL
 st.write(f"Model URL: {model_url}")
@@ -28,8 +28,14 @@ model_content = download_model(model_url)
 # Check if the model file was downloaded successfully
 if model_content is not None:
     try:
-        # Load the model from the downloaded content
-        model = pickle.loads(model_content)
+        # Save the model content to a local file
+        with open('restaurant_model.pkl', 'wb') as file:
+            file.write(model_content)
+        
+        # Load the model from the local file
+        with open('restaurant_model.pkl', 'rb') as file:
+            model = pickle.load(file)
+        
         st.success("Model loaded successfully!")  # Print success message if model loads
     except Exception as e:
         st.error(f"Error loading the model: {e}")
