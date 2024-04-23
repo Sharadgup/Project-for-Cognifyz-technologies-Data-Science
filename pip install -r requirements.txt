@@ -1,4 +1,4 @@
-source venv_name/bin/activate
+%run app.py
 streamlit pandas scikit-learn
 pip list
 scikit-learn
