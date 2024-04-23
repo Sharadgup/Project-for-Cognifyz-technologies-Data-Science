@@ -3,18 +3,19 @@ import pandas as pd
 import pickle
 import os  # Import the os module for file path operations
 
-# Define the GitHub file path for your model
-github_repo_url = 'https://github.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science.git'
-model_path = os.path.join(github_repo_url, 'restaurant_rating_prediction_model.pkl')
+# Define the raw GitHub file path for your model
+github_raw_url = 'https://raw.githubusercontent.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science/main'
+model_filename = 'restaurant_rating_prediction_model.pkl'
+model_path = os.path.join(github_raw_url, model_filename)
 
 # Display the model path and check if the file exists
 st.write(f"Model path: {model_path}")
-file_exists = os.path.exists(model_path)
+file_exists = os.path.exists(model_filename)  # Use the filename directly for checking existence
 st.write(f"File exists: {file_exists}")
 
 if file_exists:
     try:
-        with open(model_path, 'rb') as file:
+        with open(model_filename, 'rb') as file:
             model = pickle.load(file)
         st.success("Model loaded successfully!")  # Print success message if model loads
     except Exception as e:
