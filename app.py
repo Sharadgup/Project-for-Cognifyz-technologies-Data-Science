@@ -7,7 +7,7 @@ import pickle
 #drive.mount('/content/drive')
 
 # Load the trained model
-model_path = '/content/drive/MyDrive/Colab Notebooks/restaurant_rating_prediction_model.pkl'  # Update this with the actual path to your model
+model_path = 'restaurant_rating_prediction_model.pkl'  # Update this with the actual path to your model
 try:
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
