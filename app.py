@@ -2,6 +2,10 @@ import os
 import streamlit as st
 import pandas as pd
 import pickle
+from google.colab import drive
+
+# Mount Google Drive to access the model file
+drive.mount('/content/drive')
 
 # Check if 'scikit-learn' is installed
 try:
@@ -10,8 +14,8 @@ except ImportError:
     st.error("Error loading the model: 'scikit-learn' is not installed. Please install it using 'pip install scikit-learn'")
     st.stop()  # Stop execution if 'scikit-learn' is not installed
 
-# Continue with loading the model
-model_path = 'restaurant_rating_prediction_model.pkl'  # Update this with the actual path to your model
+# Update the model path to point to the model file in your Google Drive
+model_path = '/content/drive/MyDrive/path_to_model/restaurant_rating_prediction_model.pkl'
 
 if os.path.exists(model_path):
     try:
@@ -22,6 +26,7 @@ if os.path.exists(model_path):
         st.error(f"Error loading the model: {e}")
 else:
     st.error("Model file not found! Please check the file path.")
+
 # Define a function to predict restaurant rating
 def predict_rating(restaurant_name):
     # Check if the model is loaded successfully
