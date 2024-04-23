@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-st.write(f"Model path: {os.path.abspath(restaurant_rating_prediction_model.pkl)}")
-st.write(f"File exists: {os.path.exists(restaurant_rating_prediction_model.pkl)}")
+st.write(f"Model path: {model_path.abspath(restaurant_rating_prediction_model.pkl)}")
+st.write(f"File exists: {model_path.exists(restaurant_rating_prediction_model.pkl)}")
 
 try:
     with open(model_path, 'rb') as file:
