@@ -1,64 +1,48 @@
 import streamlit as st
 import pandas as pd
-import pickle
-import requests
+import joblib
 
-# Define the URL of the model file on GitHub
-model_url = 'https://raw.githubusercontent.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science/main/restaurant_rating_prediction_model.pkl'
+# Load the trained model
+model_path = 'restaurant_rating_prediction_model.joblib'  # Update this with the actual path to your model
+model = joblib.load(model_path)
 
-# Display the model URL
-st.write(f"Model URL: {model_url}")
-
-# Function to download the model file
-def download_model(url):
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            return response.content
-        else:
-            st.error(f"Failed to download the model file. Status code: {response.status_code}")
-            return None
-    except Exception as e:
-        st.error(f"Error downloading the model file: {e}")
-        return None
-
-# Download the model file
-model_content = download_model(model_url)
-
-# Check if the model file was downloaded successfully
-if model_content is not None:
-    try:
-        # Save the model content to a local file
-        with open('restaurant_model.pkl', 'wb') as file:
-            file.write(model_content)
-        
-        # Load the model from the local file
-        with open('restaurant_model.pkl', 'rb') as file:
-            model = pickle.load(file)
-        
-        st.success("Model loaded successfully!")  # Print success message if model loads
-    except Exception as e:
-        st.error(f"Error loading the model: {e}")
-else:
-    st.error("Model file not found or download failed! Please check the URL.")
-
-# Define a function to predict restaurant rating
+# Define a function to preprocess input data and predict restaurant rating
 def predict_rating(restaurant_name):
-    # Check if the model is loaded successfully
-    if 'model' not in globals():
-        st.error("Model is not loaded. Please check the model URL.")
-        return None
+    # Perform preprocessing on the input data
+    input_data = preprocess_input(restaurant_name)
     
-    # Perform any necessary preprocessing on the input data
-    input_data = pd.DataFrame({'Restaurant Name': [restaurant_name]})
+    if input_data is None:
+        st.error("Error processing input data.")
+        return None
     
     # Make predictions
     try:
         predicted_rating = model.predict(input_data)
         return predicted_rating[0]  # Assuming the model returns a single prediction
-    except Exception as e:
+    except ValueError as e:
         st.error(f"Error occurred during prediction: {e}")
         return None
+
+def preprocess_input(restaurant_name):
+    # Example preprocessing steps (replace with your actual preprocessing steps)
+    # Here, we are encoding the restaurant name and other features into numerical format
+    # You may need to adjust this based on your actual data and preprocessing requirements
+    encoded_data = pd.DataFrame({
+        'Restaurant Name': [restaurant_name],
+        # Add other features and encode them as needed
+    })
+    
+    # Check if the encoded data has the expected format and return it
+    if check_data_format(encoded_data):
+        return encoded_data
+    else:
+        return None
+
+def check_data_format(data):
+    # Check if the data format is as expected by the model
+    # For example, check if numerical columns are of correct data types
+    # You may need to customize this based on your model's input requirements
+    return True  # Placeholder, customize as needed
 
 # Streamlit app
 st.title('Restaurant Rating Prediction')
