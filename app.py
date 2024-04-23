@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import pandas as pd
 import pickle
-from sklearn.ensemble import RandomForestRegressor  # Import the appropriate model class from sklearn
+from sklearn.ensemble import RandomForestRegressor  # Correct import statement for RandomForestRegressor
 
 # Update the model path to point to the local path where your model is stored
 model_path = 'restaurant_rating_prediction_model.pkl'
@@ -23,10 +23,10 @@ def predict_rating(restaurant_name):
     if 'model' not in globals():
         st.error("Model is not loaded. Please check the model file path.")
         return None
-
+    
     # Perform any necessary preprocessing on the input data
     input_data = pd.DataFrame({'Restaurant Name': [restaurant_name]})
-
+    
     # Make predictions
     try:
         predicted_rating = model.predict(input_data)
