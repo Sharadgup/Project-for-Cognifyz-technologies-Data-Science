@@ -4,11 +4,11 @@ import pandas as pd
 import pickle
 
 # Check if 'scikit-learn' is installed
-try:
-    import sklearn
-except ImportError:
-    st.error("Error loading the model: 'scikit-learn' is not installed. Please install it using 'pip install scikit-learn'")
-    st.stop()  # Stop execution if 'scikit-learn' is not installed
+#try:
+   # import sklearn
+#except ImportError:
+   # st.error("Error loading the model: 'scikit-learn' is not installed. Please install it using 'pip install scikit-learn'")
+    #st.stop()  # Stop execution if 'scikit-learn' is not installed
 
 # Update the model path to point to the local path where your model is stored
 model_path = '/content/restaurant_rating_prediction_model.pkl'
