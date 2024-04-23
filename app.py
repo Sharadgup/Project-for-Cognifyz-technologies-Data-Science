@@ -1,21 +1,21 @@
 import streamlit as st
 import pandas as pd
 import pickle
-#from google.colab import drive
-
-# Mount Google Drive to access the model file
-#drive.mount('/content/drive')
+import os
 
 # Load the trained model
 model_path = 'restaurant_rating_prediction_model.pkl'  # Update this with the actual path to your model
-try:
-    with open(model_path, 'rb') as file:
-        model = pickle.load(file)
-    st.success("Model loaded successfully!")  # Print success message if model loads
-except FileNotFoundError:
+
+# Check if the model file exists
+if os.path.exists(model_path):
+    try:
+        with open(model_path, 'rb') as file:
+            model = pickle.load(file)
+        st.success("Model loaded successfully!")  # Print success message if model loads
+    except Exception as e:
+        st.error(f"Error loading the model: {e}")
+else:
     st.error("Model file not found! Please check the file path.")
-except Exception as e:
-    st.error(f"Error loading the model: {e}")
 
 # Define a function to predict restaurant rating
 def predict_rating(restaurant_name):
