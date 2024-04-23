@@ -1,25 +1,18 @@
-import os
 import streamlit as st
-import pandas as pd
+import sklearn
 import pickle
-#from sklearn.ensemble import RandomForestRegressor  # Correct import statement for RandomForestRegressor
 
-# Update the model path to point to the local path where your model is stored
-model_path = 'restaurant_rating_prediction_model.pkl'
+st.write(f"Model path: {os.path.abspath(restaurant_rating_prediction_model.pkl)}")
+st.write(f"File exists: {os.path.exists(/content/restaurant_rating_prediction_model.pkl)}")
 
-st.write(f"Model path: {os.path.abspath(model_path)}")
-st.write(f"File exists: {os.path.exists(model_path)}")
+try:
+    with open(model_path, 'rb') as file:
+        model = pickle.load(file)
+    st.success("Model loaded successfully!")  # Print success message if model loads
+except Exception as e:
+    st.error(f"Error loading the model: {e}")
 
-if os.path.exists(model_path):
-    try:
-        with open(model_path, 'rb') as file:
-            model = pickle.load(file)
-        st.success("Model loaded successfully!")  # Print success message if model loads
-    except Exception as e:
-        st.error(f"Error loading the model: {e}")
-else:
-    st.error("Model file not found! Please check the file path.")
-
+# Rest of your code...
 # Define a function to predict restaurant rating
 def predict_rating(restaurant_name):
     # Check if the model is loaded successfully
