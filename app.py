@@ -11,7 +11,7 @@ import pickle
     #st.stop()  # Stop execution if 'scikit-learn' is not installed
 
 # Update the model path to point to the local path where your model is stored
-model_path = '/content/restaurant_rating_prediction_model.pkl'
+model_path = 'restaurant_rating_prediction_model.pkl'
 
 if os.path.exists(model_path):
     try:
