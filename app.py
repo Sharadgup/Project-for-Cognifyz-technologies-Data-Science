@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import pandas as pd
 import pickle
-from sklearn.ensemble import RandomForestRegressor  # Correct import statement for RandomForestRegressor
+#from sklearn.ensemble import RandomForestRegressor  # Correct import statement for RandomForestRegressor
 
 # Update the model path to point to the local path where your model is stored
 model_path = 'restaurant_rating_prediction_model.pkl'
