@@ -2,5 +2,6 @@ streamlit
 pandas
 scikit-learn
 sklearn 
-folium
+streamlit-folium
+scikit-learn
 os
