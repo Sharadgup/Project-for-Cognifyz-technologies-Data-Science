@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestClassifier
  # Import specific model type if needed
 
 # Load the trained model
