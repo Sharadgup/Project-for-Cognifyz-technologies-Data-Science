@@ -3,7 +3,7 @@ import sklearn
 import pickle
 
 st.write(f"Model path: {os.path.abspath(restaurant_rating_prediction_model.pkl)}")
-st.write(f"File exists: {os.path.exists(/content/restaurant_rating_prediction_model.pkl)}")
+st.write(f"File exists: {os.path.exists(restaurant_rating_prediction_model.pkl)}")
 
 try:
     with open(model_path, 'rb') as file:
