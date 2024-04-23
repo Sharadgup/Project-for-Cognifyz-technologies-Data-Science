@@ -2,13 +2,7 @@ import os
 import streamlit as st
 import pandas as pd
 import pickle
-
-# Check if 'scikit-learn' is installed
-#try:
-   # import sklearn
-#except ImportError:
-   # st.error("Error loading the model: 'scikit-learn' is not installed. Please install it using 'pip install scikit-learn'")
-    #st.stop()  # Stop execution if 'scikit-learn' is not installed
+from sklearn.ensemble import RandomForestRegressor  # Import the appropriate model class from sklearn
 
 # Update the model path to point to the local path where your model is stored
 model_path = 'restaurant_rating_prediction_model.pkl'
@@ -29,10 +23,10 @@ def predict_rating(restaurant_name):
     if 'model' not in globals():
         st.error("Model is not loaded. Please check the model file path.")
         return None
-    
+
     # Perform any necessary preprocessing on the input data
     input_data = pd.DataFrame({'Restaurant Name': [restaurant_name]})
-    
+
     # Make predictions
     try:
         predicted_rating = model.predict(input_data)
