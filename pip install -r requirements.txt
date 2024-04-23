@@ -1,13 +1,6 @@
-%run app.py
-streamlit pandas scikit-learn
-pip list
-scikit-learn
-scikit-learn==<version>  # Replace <version> with the specific version you're using, e.g., scikit-learn==0.24.2
-python -c "import sklearn; print(sklearn.__version__)"
-google-colab==1.0.0
-google-api-python-client==2.35.0
-streamlit
 pandas
-scikit-learn
-sklearn 
+plotly
+streamlit
+pandas-datareader
+sklearn
 os
