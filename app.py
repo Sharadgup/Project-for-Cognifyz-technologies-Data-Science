@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import pickle
 import os  # Import the os module for path operations
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.impute import SimpleImputer
 
 # Check the current working directory for debugging
 print("Current Working Directory:", os.getcwd())
