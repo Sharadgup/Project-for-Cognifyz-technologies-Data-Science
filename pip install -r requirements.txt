@@ -1,4 +1,5 @@
 source /path/to/venv/bin/activate
+scikit-learn==<version>  # Replace <version> with the specific version you're using, e.g., scikit-learn==0.24.2
 streamlit
 pandas
 scikit-learn
