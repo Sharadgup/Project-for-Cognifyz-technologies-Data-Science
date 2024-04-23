@@ -7,6 +7,9 @@ import pickle
 # Update the model path to point to the local path where your model is stored
 model_path = 'restaurant_rating_prediction_model.pkl'
 
+st.write(f"Model path: {os.path.abspath(model_path)}")
+st.write(f"File exists: {os.path.exists(model_path)}")
+
 if os.path.exists(model_path):
     try:
         with open(model_path, 'rb') as file:
