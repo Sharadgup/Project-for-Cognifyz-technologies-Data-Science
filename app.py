@@ -1,5 +1,5 @@
 import streamlit as st
-import sklearn
+import pandas as pd
 import pickle
 
 st.write(f"Model path: {os.path.abspath(restaurant_rating_prediction_model.pkl)}")
