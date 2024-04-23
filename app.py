@@ -1,29 +1,46 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import sklearn  # Import 'scikit-learn' library
+import requests  # Import requests library for downloading the model file
 
-# Display the model path and check if the file exists
-model_path = 'https://raw.githubusercontent.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science/main/restaurant_rating_prediction_model.pkl'
-st.write(f"Model path: {model_path}")
-file_exists = True  # Assuming the file exists at the specified URL
-st.write(f"File exists: {file_exists}")
+# Define the URL of the model file on GitHub
+model_url = 'https://github.com/Sharadgup/Project-for-Cognifyz-technologies-Data-Science/blob/main/restaurant_rating_prediction_model.pkl'
 
-if file_exists:
+# Display the model URL
+st.write(f"Model URL: {model_url}")
+
+# Function to download the model file
+def download_model(url):
     try:
-        with open(model_path, 'rb') as file:
-            model = pickle.load(file)
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.content
+        else:
+            st.error(f"Failed to download the model file. Status code: {response.status_code}")
+            return None
+    except Exception as e:
+        st.error(f"Error downloading the model file: {e}")
+        return None
+
+# Download the model file
+model_content = download_model(model_url)
+
+# Check if the model file was downloaded successfully
+if model_content is not None:
+    try:
+        # Load the model from the downloaded content
+        model = pickle.loads(model_content)
         st.success("Model loaded successfully!")  # Print success message if model loads
     except Exception as e:
         st.error(f"Error loading the model: {e}")
 else:
-    st.error("Model file not found! Please check the file path.")
+    st.error("Model file not found or download failed! Please check the URL.")
 
 # Define a function to predict restaurant rating
 def predict_rating(restaurant_name):
     # Check if the model is loaded successfully
     if 'model' not in globals():
-        st.error("Model is not loaded. Please check the model file path.")
+        st.error("Model is not loaded. Please check the model URL.")
         return None
     
     # Perform any necessary preprocessing on the input data
