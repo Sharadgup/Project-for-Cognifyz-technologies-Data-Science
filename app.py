@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import os  # Import the os module for path operations
-from sklearn.linear_model import LinearRegression
+import os  # Import the os module for path 
 
 # Check the current working directory for debugging
 print("Current Working Directory:", os.getcwd())
