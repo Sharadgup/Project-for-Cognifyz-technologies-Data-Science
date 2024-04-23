@@ -1,3 +1,4 @@
+os 
 scikit-learn==0.24.2
 streamlit==0.76.0  # Specify the version of Streamlit you are using
 pandas==1.2.3 # Specify the version of pandas you are using
